@@ -3,20 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="swipe_left_for_register">Swipe Left for Register</string>
     <string name="login">Login</string>
-    <string name="password">Password</string>
+    <string name="password">Hasło</string>
     <string name="e_mail">Email</string>
-    <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
-    <string name="swipe_right_for_login">Swipe Right for Login</string>
-    <string name="register">Register</string>
-    <string name="re_type_password">Re-type Password</string>
-    <string name="your_name">Full Name</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="register">Rejestracja</string>
+    <string name="re_type_password">Powtórzy hasło</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="logo">MeetForPlay</string>
+    <string name="action_sign_in">Zaloguj</string>
+    <string name="button_login">Zaloguj się</string>
+    <string name="link_signup_text">Nie masz konta ? Zarejestruj się</string>
+    <string name="prompt_repeat_password">Powtórz hasło</string>
+    <string name="button_register">Zarejestruj się</string>
 </resources>

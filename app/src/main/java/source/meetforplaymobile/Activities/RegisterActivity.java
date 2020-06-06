@@ -1,5 +1,8 @@
 package source.meetforplaymobile.Activities;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,41 +20,42 @@ import java.util.List;
 
 import source.meetforplaymobile.Api.ApiResponseInterface;
 import source.meetforplaymobile.Api.RetrofitManager;
+import source.meetforplaymobile.Models.RegisterResult;
 import source.meetforplaymobile.Models.User;
 import source.meetforplaymobile.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     private EditText emailInput;
     private EditText passwordInput;
-    private Button loginButton;
+    private EditText repeatPasswordInput;
+    private Button registerButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        setContentView(R.layout.activity_register);
         emailInput = findViewById(R.id.input_email);
         passwordInput = findViewById(R.id.input_password);
-        loginButton = findViewById(R.id.btn_login);
+        repeatPasswordInput = findViewById(R.id.input_repeat_password);
+        registerButton = findViewById(R.id.btn_register);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+                register();
             }
         });
     }
 
-    public void login()
+    public void register()
     {
         if (!validate())
         {
             return;
         }
-        loginButton.setEnabled(false);
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+        registerButton.setEnabled(false);
+        final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Autoryzacja...");
         progressDialog.show();
@@ -62,69 +63,66 @@ public class LoginActivity extends AppCompatActivity {
         new android.os.Handler().postDelayed(
                 new Runnable() {
                     public void run() {
-                        onLogin();
+                        onRegister();
                         progressDialog.dismiss();
                     }
                 }, 1000);
     }
 
-    public void onLogin() {
-        final String email = emailInput.getText().toString();
+    public void onRegister() {
+        String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
+
         final HashMap parameters = new HashMap();
         parameters.put("email", email);
         parameters.put("password", password);
 
         RetrofitManager retrofitManager = new RetrofitManager();
 
-        retrofitManager.getData("LoginUser", parameters, new ApiResponseInterface() {
+        retrofitManager.getData("RegisterUser", parameters, new ApiResponseInterface() {
             @Override
             public void onSuccess(@NonNull String value) {
-                List<User> user_list = new Gson().fromJson(
+                List<RegisterResult> result_list = new Gson().fromJson(
                         value, new TypeToken<List<User>>() {
                         }.getType());
-                User user = user_list.get(0);
-                user.setEmail(email);
+                RegisterResult result = result_list.get(0);
 
-                if(user.getId() != -100)
+                if(result.isStatus())
                 {
-                    Intent intent = new Intent(LoginActivity.this, MapActivity.class);
-                    intent.putExtra("userId", user.getId());
-                    intent.putExtra("userEmail", user.getEmail());
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     Toast toast = Toast.makeText(getApplicationContext(),
-                            "Udało się zalogować",
+                            "Rejestracja powiodła się",
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP, 0, 0);
                     toast.show();
                 }
                 else
                 {
-                    onLoginFailed();
+                    onRegisterFailed();
                 }
             }
 
             @Override
             public void onError(@NonNull String throwable) {
                 Toast toast = Toast.makeText(getApplicationContext(),
-                        "Nie udało się zalogować",
+                        "Nie udało się zarejestrować",
                         Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP, 0, 0);
                 toast.show();
             }
         });
-        loginButton.setEnabled(true);
+        registerButton.setEnabled(true);
     }
 
-    public void onLoginFailed()
+    public void onRegisterFailed()
     {
         Toast toast = Toast.makeText(getApplicationContext(),
-                "Email i/lub hasło jest niepoprawny",
+                "Ten adres email jest już zajęty",
                 Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP, 0, 0);
         toast.show();
-        emailInput.setError("Email i/lub hasło jest niepoprawny");
-        passwordInput.setError("Email i/lub hasło jest niepoprawny");
+        emailInput.setError("Ten adres email jest już zajęty");
     }
 
     public boolean validate() {
@@ -132,6 +130,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
+        String repeatPassword = repeatPasswordInput.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailInput.setError("Proszę podać poprawny adres email");
@@ -140,8 +139,16 @@ public class LoginActivity extends AppCompatActivity {
             emailInput.setError(null);
         }
 
-        if (password.isEmpty()) {
-            passwordInput.setError("Nie poprawne hasło");
+        if (password.isEmpty() & password.length() < 6) {
+            passwordInput.setError("Hasło musi mieć więcej jak 6 znaków");
+            valid = false;
+        } else {
+            passwordInput.setError(null);
+        }
+
+        if (!password.equals(repeatPassword)) {
+            passwordInput.setError("Hasła nie są takie same");
+            repeatPasswordInput.setError("Hasła nie są takie same");
             valid = false;
         } else {
             passwordInput.setError(null);
@@ -150,4 +157,3 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 }
-
