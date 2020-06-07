@@ -5,16 +5,16 @@ import com.google.gson.annotations.Expose;
 public class RegisterResult {
 
     @Expose
-    private boolean status;
+    private int status;
 
     @Expose
     private String info;
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

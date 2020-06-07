@@ -12,7 +12,7 @@
     <string name="logo">MeetForPlay</string>
     <string name="action_sign_in">Zaloguj</string>
     <string name="button_login">Zaloguj się</string>
-    <string name="link_signup_text">Nie masz konta ? Zarejestruj się</string>
+    <string name="link_register_text">Nie masz konta ? Zarejestruj się</string>
     <string name="prompt_repeat_password">Powtórz hasło</string>
     <string name="button_register">Zarejestruj się</string>
 </resources>

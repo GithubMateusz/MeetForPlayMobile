@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailInput;
     private EditText passwordInput;
     private Button loginButton;
+    private Button linkRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,11 +39,19 @@ public class LoginActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.input_email);
         passwordInput = findViewById(R.id.input_password);
         loginButton = findViewById(R.id.btn_login);
+        linkRegister = findViewById(R.id.btn_link_register);
+
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login();
+            }
+        });
+        linkRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goRegister();
             }
         });
     }
@@ -68,12 +77,16 @@ public class LoginActivity extends AppCompatActivity {
                 }, 1000);
     }
 
-    public void onLogin() {
+    public void onLogin(){
         final String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
-        final HashMap parameters = new HashMap();
-        parameters.put("email", email);
-        parameters.put("password", password);
+        final HashMap<String, String> parameters = new HashMap<>();
+        final User user = new User();
+        user.setPassword(password);
+        user.setEmail(email);
+
+        parameters.put("email", user.getEmail());
+        parameters.put("password", user.getPassword());
 
         RetrofitManager retrofitManager = new RetrofitManager();
 
@@ -83,8 +96,8 @@ public class LoginActivity extends AppCompatActivity {
                 List<User> user_list = new Gson().fromJson(
                         value, new TypeToken<List<User>>() {
                         }.getType());
-                User user = user_list.get(0);
-                user.setEmail(email);
+                user.setId(user_list.get(0).getId());
+
 
                 if(user.getId() != -100)
                 {
@@ -114,6 +127,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         loginButton.setEnabled(true);
+    }
+
+    public void goRegister(){
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     public void onLoginFailed()

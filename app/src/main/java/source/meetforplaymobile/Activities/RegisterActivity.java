@@ -73,21 +73,24 @@ public class RegisterActivity extends AppCompatActivity {
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        final HashMap parameters = new HashMap();
-        parameters.put("email", email);
-        parameters.put("password", password);
+        final HashMap<String, String> parameters = new HashMap<>();
+        final User user = new User();
+        user.setPassword(password);
+        user.setEmail(email);
 
+        parameters.put("email", user.getEmail());
+        parameters.put("password", user.getPassword());
         RetrofitManager retrofitManager = new RetrofitManager();
 
         retrofitManager.getData("RegisterUser", parameters, new ApiResponseInterface() {
             @Override
             public void onSuccess(@NonNull String value) {
                 List<RegisterResult> result_list = new Gson().fromJson(
-                        value, new TypeToken<List<User>>() {
+                        value, new TypeToken<List<RegisterResult>>() {
                         }.getType());
                 RegisterResult result = result_list.get(0);
 
-                if(result.isStatus())
+                if(result.getStatus() != 0)
                 {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
