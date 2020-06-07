@@ -72,7 +72,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                     Double latitude = EventCoordinates_list.get(i).getLatitude();
                     Double longitude = EventCoordinates_list.get(i).getLongitude();
-                     String title = EventCoordinates_list.get(i).getEventName();
+                    String title = EventCoordinates_list.get(i).getEventName();
                     LatLng point = new LatLng(latitude, longitude);
                     map.addMarker(new MarkerOptions().position(point).title(title));
 
