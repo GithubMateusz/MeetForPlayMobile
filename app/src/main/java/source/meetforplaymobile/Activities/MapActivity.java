@@ -3,7 +3,7 @@ package source.meetforplaymobile.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -38,15 +38,12 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-         mapFragment.getMapAsync(this);
 
-
-
-
+        mapFragment.getMapAsync(this);
     }
+
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
@@ -70,8 +67,8 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
                 for (int i = 0; i< EventCoordinates_list.size(); i++) {
 
-                    Double latitude = EventCoordinates_list.get(i).getLatitude();
-                    Double longitude = EventCoordinates_list.get(i).getLongitude();
+                    double latitude = EventCoordinates_list.get(i).getLatitude();
+                    double longitude = EventCoordinates_list.get(i).getLongitude();
                     String title = EventCoordinates_list.get(i).getEventName();
                     LatLng point = new LatLng(latitude, longitude);
                     map.addMarker(new MarkerOptions().position(point).title(title));

@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:theme="@style/Theme.MaterialComponents">
+    android:theme="@style/AppTheme">
 
-    <include layout="@layout/activity_main" />
+    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center">
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
 
         <!--  Email Label -->
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +71,5 @@
             android:layout_marginBottom="24dp"
             android:padding="12dp"
             android:text="@string/button_register" />
-
-
     </LinearLayout>
 </RelativeLayout>

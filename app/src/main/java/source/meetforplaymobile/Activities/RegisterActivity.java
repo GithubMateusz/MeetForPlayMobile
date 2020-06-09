@@ -2,6 +2,7 @@ package source.meetforplaymobile.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         emailInput = findViewById(R.id.input_email);
         passwordInput = findViewById(R.id.input_password);
         repeatPasswordInput = findViewById(R.id.input_repeat_password);
