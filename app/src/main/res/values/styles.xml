@@ -20,5 +20,30 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="MyDialogTheme"></style>
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/black</item>
+        <item name="android:windowTitleStyle">@style/TitleTextStyle</item>
+    </style>
+
+    <style name="TitleTextStyle">
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
+    <style name="AppTheme.ExposedDropdownMenu"></style>
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorAccent">@color/blue</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+    </style>
+
 </resources>

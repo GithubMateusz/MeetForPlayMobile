@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 
 public class EventCoordinates {
     @Expose
-    int EventId ;
+    int eventId ;
     @Expose
     double latitude;
     @Expose
@@ -15,15 +15,6 @@ public class EventCoordinates {
     String eventCategoryName;
     @Expose
     String icon;
-
-    public EventCoordinates(int eventId, double latitude, double longitude, String eventName, String eventCategoryName, String icon) {
-        EventId = eventId;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.eventName = eventName;
-        this.eventCategoryName = eventCategoryName;
-        this.icon = icon;
-    }
 
     public String getEventName() {
         return eventName;
@@ -50,11 +41,11 @@ public class EventCoordinates {
     }
 
     public int getEventId() {
-        return EventId;
+        return eventId;
     }
 
     public void setEventId(int eventId) {
-        EventId = eventId;
+        eventId = eventId;
     }
 
     public double getLatitude() {

@@ -28,7 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailInput;
     private EditText passwordInput;
     private Button loginButton;
-    private Button linkRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -39,8 +38,9 @@ public class LoginActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.input_email);
         passwordInput = findViewById(R.id.input_password);
         loginButton = findViewById(R.id.btn_login);
-        linkRegister = findViewById(R.id.btn_link_register);
-
+        Button linkRegister = findViewById(R.id.btn_link_register);
+        Button btnAddEvent = findViewById(R.id.btn_add_event);
+        btnAddEvent.setVisibility(View.GONE);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
+
         linkRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(),
                             "Udało się zalogować",
                             Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.TOP, 0, 0);
+                    toast.setGravity(Gravity.TOP, 0, 100);
                     toast.show();
                 }
                 else
@@ -122,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Nie udało się zalogować",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.setGravity(Gravity.TOP, 0, 100);
                 toast.show();
             }
         });

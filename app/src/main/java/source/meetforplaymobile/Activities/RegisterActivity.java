@@ -1,9 +1,5 @@
 package source.meetforplaymobile.Activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,6 +41,18 @@ public class RegisterActivity extends AppCompatActivity {
         repeatPasswordInput = findViewById(R.id.input_repeat_password);
         registerButton = findViewById(R.id.btn_register);
 
+        Button linkLogin = findViewById(R.id.btn_link_login);
+
+        Button btnAddEvent = findViewById(R.id.btn_add_event);
+        btnAddEvent.setVisibility(View.GONE);
+
+        linkLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goLogin();
+            }
+        });
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,10 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void register()
-    {
-        if (!validate())
-        {
+    public void register() {
+        if (!validate()) {
             return;
         }
         registerButton.setEnabled(false);
@@ -92,8 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }.getType());
                 RegisterResult result = result_list.get(0);
 
-                if(result.getStatus() != 0)
-                {
+                if (result.getStatus() != 0) {
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     Toast toast = Toast.makeText(getApplicationContext(),
@@ -101,9 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.TOP, 0, 0);
                     toast.show();
-                }
-                else
-                {
+                } else {
                     onRegisterFailed();
                 }
             }
@@ -113,19 +119,18 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Nie udało się zarejestrować",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.setGravity(Gravity.TOP, 0, 100);
                 toast.show();
             }
         });
         registerButton.setEnabled(true);
     }
 
-    public void onRegisterFailed()
-    {
+    public void onRegisterFailed() {
         Toast toast = Toast.makeText(getApplicationContext(),
                 "Ten adres email jest już zajęty",
                 Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP, 0, 0);
+        toast.setGravity(Gravity.TOP, 0, 100);
         toast.show();
         emailInput.setError("Ten adres email jest już zajęty");
     }
@@ -161,4 +166,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    public void goLogin() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
 }
