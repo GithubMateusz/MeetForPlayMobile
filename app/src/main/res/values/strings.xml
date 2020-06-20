@@ -15,4 +15,9 @@
     <string name="link_register_text">Nie masz konta ? Zarejestruj się</string>
     <string name="prompt_repeat_password">Powtórz hasło</string>
     <string name="button_register">Zarejestruj się</string>
+    <string name="prompt_eventName">Nazwa eventu</string>
+    <string name="prompt_objectName">Nazwa obiektu</string>
+    <string name="prompt_minPersonToStart">Minimalna liczba graczy</string>
+    <string name="prompt_maxPersonToStart">Maksymalna liczba graczy</string>
+    <string name="prompt_opis">Opis wydarzenia</string>
 </resources>

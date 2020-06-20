@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AddEventActivity">
+
+
+    <fragment
+        android:id="@+id/mapAddEvent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapAddEvent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/date_time_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data i czas wydarzenia "
+                android:inputType="none"
+                app:layout_constraintTop_toBottomOf="@+id/mapAddEvent" />
+
+            <EditText
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_eventName"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/objectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_objectName"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/minPersonToStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_minPersonToStart"
+
+                android:inputType="phone"/>
+
+            <EditText
+                android:id="@+id/maxPersonToStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_maxPersonToStart"
+
+                android:inputType="phone"
+                />
+
+
+
+            <Spinner
+                android:id="@+id/EventCategorySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            />
+
+
+
+            <Button
+                android:id="@+id/createEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:onClick="CreateEvent"
+                android:text="Utwórz wydarzenie"
+                />
+
+
+        </LinearLayout>
+
+
+        />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

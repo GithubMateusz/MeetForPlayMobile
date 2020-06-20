@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(user.getId() != -100)
                 {
-                    Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, AddEventActivity.class);
                     intent.putExtra("userId", user.getId());
                     intent.putExtra("userEmail", user.getEmail());
                     startActivity(intent);

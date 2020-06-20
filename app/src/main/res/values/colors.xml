@@ -6,4 +6,6 @@
     <color name="background">#2b2a2b</color>
     <color name="blue">#51c9fc</color>
     <color name="white">#ffffff</color>
+    <color name="mdtp_accent_color">#070B82</color>
+    <color name="mdtp_accent_color_dark">#0D105E</color>
 </resources>
