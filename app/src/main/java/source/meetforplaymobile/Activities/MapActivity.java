@@ -148,7 +148,7 @@ public class MapActivity extends FragmentActivity implements
                     message += eventBasicInfo.getObjectName();
                     builder.setMessage(message)
                             .setCancelable(true)
-                            .setPositiveButton("Dołącz", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("Szczegóły", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     goJoinEvent(event.getEventId());
                                     finish();
